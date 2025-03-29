@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using Marketplace.UI.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Marketplace.UI.MVC.Controllers
 {

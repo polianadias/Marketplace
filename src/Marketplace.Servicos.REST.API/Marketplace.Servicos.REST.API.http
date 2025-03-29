@@ -1,4 +1,4 @@
-@Marketplace.Servicos.REST.API_HostAddress = http://localhost:5206
+@Marketplace.Servicos.REST.API_HostAddress = http://localhost:5036
 
 GET {{Marketplace.Servicos.REST.API_HostAddress}}/weatherforecast/
 Accept: application/json
