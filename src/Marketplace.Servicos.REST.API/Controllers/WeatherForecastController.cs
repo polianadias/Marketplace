@@ -1,3 +1,5 @@
+using Marketplace.Aplicacao.Interfaces;
+using Marketplace.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marketplace.Servicos.REST.API.Controllers
@@ -6,28 +8,20 @@ namespace Marketplace.Servicos.REST.API.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IProdutoAppService _appServico;
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IProdutoAppService appServico)
         {
             _logger = logger;
+            _appServico = appServico;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public Task<IEnumerable<Produto>> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return _appServico.ObterTodos();
         }
     }
 }

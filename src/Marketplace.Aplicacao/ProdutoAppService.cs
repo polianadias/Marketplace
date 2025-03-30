@@ -1,50 +1,51 @@
 ﻿using System.Linq.Expressions;
 using Marketplace.Aplicacao.Interfaces;
 using Marketplace.Dominio.Entidades;
+using Marketplace.Dominio.Interfaces.Servicos;
 
 namespace Marketplace.Aplicacao
 {
     public class ProdutoAppService : IProdutoAppService
     {
-        private readonly IProdutoAppService _service;
+        private readonly IProdutoService _service;
 
-        public ProdutoAppService(IProdutoAppService service)
+        public ProdutoAppService(IProdutoService service)
         {
             _service = service;
         }
-        public Produto Get(int id, bool @readonly = false)
+        public Task Adicionar(Produto entity)
         {
-            return _service.Get(id, @readonly);
+            return _service.Adicionar(entity);
         }
 
-        public IEnumerable<Produto> All(bool @readonly = false)
+        public Task Atualizar(Produto entity)
         {
-            return _service.All(@readonly);
+            return _service.Atualizar(entity);
         }
 
-        public IEnumerable<Produto> Find(Expression<Func<Produto, bool>> predicate, bool @readonly = false)
+        public Task<IEnumerable<Produto>> Buscar<TOrderKey>(Expression<Func<Produto, bool>> predicate, Expression<Func<Produto, TOrderKey>>? orderBy = null)
         {
-            return _service.Find(predicate, @readonly);
-        }
-
-        public void Add(Produto produto)
-        {
-            _service.Add(produto);
-        }
-
-        public void Update(Produto produto)
-        {
-            _service.Update(produto);
-        }
-
-        public void Delete(Produto produto)
-        {
-            _service.Delete(produto);
+            return _service.Buscar(predicate, orderBy);
         }
 
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public Task Excluir(Produto entity)
+        {
+            return _service.Excluir(entity);
+        }
+
+        public Task<Produto?> ObterPorId(Guid id)
+        {
+            return _service.ObterPorId(id);
+        }
+
+        public Task<IEnumerable<Produto>> ObterTodos()
+        {
+            return _service.ObterTodos();
         }
     }
 }

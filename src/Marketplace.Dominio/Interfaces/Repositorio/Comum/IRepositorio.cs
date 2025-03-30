@@ -4,7 +4,7 @@ namespace Marketplace.Dominio.Interfaces.Repositorio.Comum
 {
     public interface IRepositorio<TEntity> where TEntity : class
     {
-        Task<List<TEntity>> ObterTodos();
+        Task<IEnumerable<TEntity>> ObterTodos();
 
         Task<TEntity?> ObterPorId(Guid id);
 

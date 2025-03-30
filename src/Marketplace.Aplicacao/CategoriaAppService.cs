@@ -1,51 +1,52 @@
 ﻿using System.Linq.Expressions;
 using Marketplace.Aplicacao.Interfaces;
 using Marketplace.Dominio.Entidades;
+using Marketplace.Dominio.Interfaces.Servicos;
 
 namespace Marketplace.Aplicacao
 {
     public class CategoriaAppService : ICategoriaAppService
     {
-        private readonly ICategoriaAppService _service;
+        private readonly ICategoriaService _service;
 
-        public CategoriaAppService(ICategoriaAppService service)
+        public CategoriaAppService(ICategoriaService service)
         {
             _service = service;
         }
 
-        public Categoria Get(int id, bool @readonly = false)
+        public Task Adicionar(Categoria entity)
         {
-            return _service.Get(id, @readonly);
+            return _service.Adicionar(entity);  
         }
 
-        public IEnumerable<Categoria> All(bool @readonly = false)
+        public Task Atualizar(Categoria entity)
         {
-            return _service.All(@readonly);
+            return _service.Atualizar(entity);
         }
 
-        public IEnumerable<Categoria> Find(Expression<Func<Categoria, bool>> predicate, bool @readonly = false)
+        public Task<IEnumerable<Categoria>> Buscar<TOrderKey>(Expression<Func<Categoria, bool>> predicate, Expression<Func<Categoria, TOrderKey>>? orderBy = null)
         {
-            return _service.Find(predicate, @readonly);
-        }
-
-        public void Add(Categoria categoria)
-        {
-            _service.Add(categoria);
-        }
-
-        public void Update(Categoria categoria)
-        {
-            _service.Update(categoria);
-        }
-
-        public void Delete(Categoria categoria)
-        {
-            _service.Delete(categoria);
+           return _service.Buscar(predicate, orderBy);
         }
 
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public Task Excluir(Categoria entity)
+        {
+            return _service.Excluir(entity);
+        }
+
+        public Task<Categoria?> ObterPorId(Guid id)
+        {
+            return _service.ObterPorId(id);
+        }
+
+        public Task<IEnumerable<Categoria>> ObterTodos()
+        {
+           return _service.ObterTodos();
         }
     }
 }

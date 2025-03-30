@@ -1,51 +1,52 @@
 ﻿using System.Linq.Expressions;
 using Marketplace.Aplicacao.Interfaces;
 using Marketplace.Dominio.Entidades;
+using Marketplace.Dominio.Interfaces.Servicos;
 
 namespace Marketplace.Aplicacao
 {
     public class VendedorAppService : IVendedorAppService
     {
-        private readonly IVendedorAppService _service;
+        private readonly IVendedorService _service;
 
-        public VendedorAppService(IVendedorAppService service)
+        public VendedorAppService(IVendedorService service)
         {
             _service = service;
         }
 
-        public Vendedor Get(int id, bool @readonly = false)
+        public Task Adicionar(Vendedor entity)
         {
-            return _service.Get(id, @readonly);
+            return _service.Adicionar(entity);
         }
 
-        public IEnumerable<Vendedor> All(bool @readonly = false)
+        public Task Atualizar(Vendedor entity)
         {
-            return _service.All(@readonly);
+            return _service.Atualizar(entity);
         }
 
-        public IEnumerable<Vendedor> Find(Expression<Func<Vendedor, bool>> predicate, bool @readonly = false)
+        public Task<IEnumerable<Vendedor>> Buscar<TOrderKey>(Expression<Func<Vendedor, bool>> predicate, Expression<Func<Vendedor, TOrderKey>>? orderBy = null)
         {
-            return _service.Find(predicate, @readonly);
-        }
-
-        public void Add(Vendedor vendedor)
-        {
-            _service.Add(vendedor);
-        }
-
-        public void Update(Vendedor vendedor)
-        {
-            _service.Update(vendedor);
-        }
-
-        public void Delete(Vendedor vendedor)
-        {
-            _service.Delete(vendedor);
+            return _service.Buscar(predicate, orderBy);
         }
 
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public Task Excluir(Vendedor entity)
+        {
+            return _service.Excluir(entity);
+        }
+
+        public Task<Vendedor?> ObterPorId(Guid id)
+        {
+            return _service.ObterPorId(id);
+        }
+
+        public Task<IEnumerable<Vendedor>> ObterTodos()
+        {
+            return _service.ObterTodos();
         }
     }
 }

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Marketplace.Aplicacao\Marketplace.Aplicacao.csproj" />
     <ProjectReference Include="..\Marketplace.Infra.CrossCutting.IoC\Marketplace.Infra.CrossCutting.IoC.csproj" />
   </ItemGroup>
 

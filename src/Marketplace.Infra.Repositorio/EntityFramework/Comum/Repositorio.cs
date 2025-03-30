@@ -8,7 +8,7 @@ namespace Marketplace.Infra.Repositorio.EntityFramework.Comum
 {
     public abstract class Repositorio<TEntity> : IRepositorio<TEntity>, IDisposable where TEntity : class
     {
-        protected readonly EFDbContext dbContext;
+        protected EFDbContext dbContext;
         protected DbSet<TEntity> DbSet { get; set; }
 
         public Repositorio(EFDbContext dbContext)
@@ -17,7 +17,7 @@ namespace Marketplace.Infra.Repositorio.EntityFramework.Comum
             DbSet = this.dbContext.Set<TEntity>();
         }
 
-        public async Task<List<TEntity>> ObterTodos()
+        public async Task<IEnumerable<TEntity>> ObterTodos()
         {
             return await DbSet.ToListAsync();
         }

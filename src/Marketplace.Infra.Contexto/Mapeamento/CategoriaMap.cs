@@ -13,9 +13,8 @@ namespace Marketplace.Infra.Contexto.Mapeamento
             builder.Property(x => x.Nome)
                 .HasColumnType("varchar(200)");
 
-            builder.HasOne(x => x.Descricao)
-                .WithMany()
-                .IsRequired(false);
+            builder.Property(x => x.Descricao)
+                 .HasColumnType("varchar(200)");
 
             builder.ToTable("Categorias");
         }

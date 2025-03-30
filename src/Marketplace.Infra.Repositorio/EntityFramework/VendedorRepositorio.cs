@@ -5,7 +5,8 @@ using Marketplace.Infra.Repositorio.EntityFramework.Comum;
 
 namespace Marketplace.Infra.Repositorio.EntityFramework
 {
-    public class VendedorRepositorio(EFDbContext dbContext) : Repositorio<Vendedor>(dbContext), IVendedorRepositorio
-    {       
+    public class VendedorRepositorio : Repositorio<Vendedor>, IVendedorRepositorio
+    {
+        public VendedorRepositorio(EFDbContext dbContext) : base(dbContext) { }
     }
 }

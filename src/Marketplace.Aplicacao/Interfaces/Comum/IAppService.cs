@@ -4,11 +4,16 @@ namespace Marketplace.Aplicacao.Interfaces.Comum
 {
     public interface IAppServico<TEntity> : IDisposable where TEntity : class
     {
-        TEntity Get(int id, bool @readonly = false);
-        IEnumerable<TEntity> All(bool @readonly = false);
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, bool @readonly = false);
-        void Add(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
+        Task<IEnumerable<TEntity>> ObterTodos();
+
+        Task<TEntity?> ObterPorId(Guid id);
+
+        Task<IEnumerable<TEntity>> Buscar<TOrderKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrderKey>>? orderBy = null);
+
+        Task Atualizar(TEntity entity);
+
+        Task Adicionar(TEntity entity);
+
+        Task Excluir(TEntity entity);
     }
 }

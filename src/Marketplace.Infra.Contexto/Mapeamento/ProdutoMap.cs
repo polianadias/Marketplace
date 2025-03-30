@@ -8,7 +8,7 @@ namespace Marketplace.Infra.Contexto.Mapeamento
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            builder.HasKey(t => t.Codigo);
+            builder.Property(t => t.Codigo);
             builder.Property(t => t.Nome)
                 .HasMaxLength(160)
                 .IsRequired();

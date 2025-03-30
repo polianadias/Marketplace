@@ -38,7 +38,7 @@ namespace Marketplace.Dominio.Servicos.Comum
             return _repositorio.ObterPorId(id);
         }
 
-        public Task<List<TEntity>> ObterTodos()
+        public Task<IEnumerable<TEntity>> ObterTodos()
         {
             return _repositorio.ObterTodos();
         }
