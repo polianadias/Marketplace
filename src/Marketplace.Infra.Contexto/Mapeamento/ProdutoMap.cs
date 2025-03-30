@@ -8,7 +8,7 @@ namespace Marketplace.Infra.Contexto.Mapeamento
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            builder.Property(t => t.Codigo);
+            builder.HasKey(t => t.Codigo);
             builder.Property(t => t.Nome)
                 .HasMaxLength(160)
                 .IsRequired();
@@ -19,7 +19,8 @@ namespace Marketplace.Infra.Contexto.Mapeamento
                 .HasPrecision(5, 2)
                 .IsRequired();
             builder.Property(t => t.Imagem).IsRequired();
-            builder.Property(t => t.Estoque).IsRequired(); 
+            builder.Property(t => t.Estoque).IsRequired();
+            builder.ToTable("Produto");
 
         }
     }

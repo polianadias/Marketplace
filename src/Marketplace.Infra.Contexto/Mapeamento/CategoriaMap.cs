@@ -16,7 +16,7 @@ namespace Marketplace.Infra.Contexto.Mapeamento
             builder.Property(x => x.Descricao)
                  .HasColumnType("varchar(200)");
 
-            builder.ToTable("Categorias");
+            builder.ToTable("Categoria");
         }
     }
 }

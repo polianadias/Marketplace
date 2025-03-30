@@ -14,7 +14,7 @@ namespace Marketplace.Infra.CrossCutting.IoC
     {
         public static void Register(IServiceCollection services)
         {
-            services.AddDbContext<EFDbContext>(options => options.UseSqlServer("Server=localhost;Database=MODELO;User ID=sa;Password=1q2w3e4r@#$"));
+            services.AddDbContext<EFDbContext>(options => options.UseSqlServer("Server=localhost;Database=Marketplace;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=True;"));
 
             services.AddScoped<IProdutoAppService, ProdutoAppService>();
             services.AddScoped<IProdutoService, ProdutoServico>();

@@ -7,9 +7,9 @@ namespace Marketplace.Infra.Contexto
     {
         public EFDbContext(DbContextOptions<EFDbContext> options) : base(options) { }
 
-        public DbSet<Produto> Produtos { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Vendedor> Vendedors { get; set; }
+        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<Vendedor> Vendedor { get; set; }
 
     }
 }
